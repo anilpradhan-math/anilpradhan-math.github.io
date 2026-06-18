@@ -1,264 +1,896 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Anil Kumar Pradhan | Cryptography Researcher</title>
+  <title>Anil Kumar Pradhan — Cryptography Researcher</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;450;500&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #0f172a;
-      --card: #111827;
-      --text: #f8fafc;
-      --muted: #94a3b8;
-      --accent: #38bdf8;
+      --bg:      #070B11;
+      --surface: #0D1420;
+      --border:  rgba(255,255,255,0.08);
+      --text:    #E8EDF5;
+      --muted:   #6B7A99;
+      --faint:   #1C2336;
+      --key:     #2196F3;
+      --key-dim: rgba(33,150,243,0.12);
+      --accent:  #00E5A0;
+      --accent-dim: rgba(0,229,160,0.08);
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
 
     body {
-      font-family: Inter, system-ui, sans-serif;
+      font-family: 'Inter', system-ui, sans-serif;
       background: var(--bg);
       color: var(--text);
       line-height: 1.7;
+      font-size: 16px;
+      overflow-x: hidden;
     }
 
-    header, section {
-      max-width: 1000px;
-      margin: auto;
-      padding: 4rem 2rem;
-    }
+    a { color: var(--key); text-decoration: none; }
+    a:hover { color: var(--accent); }
 
-    header {
-      min-height: 90vh;
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
       display: flex;
+      justify-content: space-between;
       align-items: center;
+      padding: 1.25rem 4rem;
+      background: rgba(7,11,17,0.82);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
     }
 
-    h1 {
-      font-size: clamp(2.6rem, 7vw, 5rem);
-      line-height: 1.1;
-      margin-bottom: 1rem;
+    .nav-mono {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
     }
 
-    h2 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 8rem 4rem 4rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .hero-eyebrow {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.75rem;
       color: var(--accent);
-    }
-
-    h3 { margin-bottom: 0.4rem; }
-
-    p, li { color: var(--muted); }
-
-    a {
-      color: var(--accent);
-      text-decoration: none;
-    }
-
-    .hero p {
-      font-size: 1.2rem;
-      max-width: 760px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
       margin-bottom: 1.5rem;
     }
 
-    .buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-
-    .button {
-      padding: 0.8rem 1.2rem;
-      border-radius: 999px;
-      background: var(--accent);
-      color: var(--bg);
+    .hero-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(3rem, 7vw, 6rem);
       font-weight: 700;
+      line-height: 1.0;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
     }
 
-    .button.secondary {
-      background: transparent;
-      color: var(--text);
-      border: 1px solid var(--muted);
+    .hero-name em {
+      font-style: normal;
+      color: var(--key);
     }
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    .hero-desc {
+      font-size: 1.15rem;
+      color: var(--muted);
+      max-width: 620px;
+      margin-bottom: 3rem;
+      line-height: 1.8;
+    }
+
+    .hero-actions {
+      display: flex;
       gap: 1rem;
-      margin-top: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 5rem;
     }
 
-    .card {
-      background: var(--card);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 1rem;
-      padding: 1.4rem;
+    .btn-primary {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      padding: 0.75rem 1.75rem;
+      background: var(--key);
+      color: #070B11;
+      font-weight: 500;
+      border-radius: 4px;
+      transition: opacity 0.2s;
+      display: inline-block;
     }
 
-    .meta {
+    .btn-primary:hover { opacity: 0.88; color: #070B11; }
+
+    .btn-ghost {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      padding: 0.75rem 1.75rem;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      border-radius: 4px;
+      transition: border-color 0.2s, color 0.2s;
+      display: inline-block;
+    }
+
+    .btn-ghost:hover { border-color: var(--muted); color: var(--text); }
+
+    /* CIPHER STRIP — the signature element */
+    .cipher-strip {
+      overflow: hidden;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 0.9rem 0;
+      margin-bottom: 0;
+    }
+
+    .cipher-inner {
+      display: flex;
+      gap: 3rem;
+      animation: scroll-cipher 28s linear infinite;
+      width: max-content;
+    }
+
+    .cipher-inner span {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--muted);
+      white-space: nowrap;
+      opacity: 0.6;
+    }
+
+    .cipher-inner span.hi {
       color: var(--accent);
-      font-size: 0.95rem;
+      opacity: 0.9;
+    }
+
+    @keyframes scroll-cipher {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* SECTIONS */
+    .section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 6rem 4rem;
+    }
+
+    .section-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--accent);
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+    }
+
+    .section-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 3rem;
+    }
+
+    /* ABOUT */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .about-body {
+      font-size: 1.05rem;
+      color: var(--muted);
+      line-height: 1.9;
+    }
+
+    .about-stats {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .stat {
+      border-left: 2px solid var(--key);
+      padding-left: 1.25rem;
+    }
+
+    .stat-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-top: 0.3rem;
+    }
+
+    /* EXPERTISE */
+    .expertise-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+
+    .expertise-item {
+      background: var(--bg);
+      padding: 2rem;
+      position: relative;
+    }
+
+    .expertise-item::before {
+      content: attr(data-index);
+      position: absolute;
+      top: 1.2rem;
+      right: 1.5rem;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--muted);
+      opacity: 0.4;
+      letter-spacing: 0.05em;
+    }
+
+    .expertise-icon {
+      width: 36px;
+      height: 36px;
+      border: 1px solid var(--key-dim);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+
+    .expertise-icon svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--key);
+      fill: none;
+      stroke-width: 1.5;
+    }
+
+    .expertise-item h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1rem;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+
+    .expertise-item p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* EXPERIENCE */
+    .timeline {
+      position: relative;
+      padding-left: 2.5rem;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      bottom: 8px;
+      width: 1px;
+      background: var(--border);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 3rem;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -2.5rem;
+      top: 8px;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--key);
+      box-shadow: 0 0 0 3px var(--key-dim);
+    }
+
+    .tl-meta {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+      margin-bottom: 0.4rem;
+    }
+
+    .tl-role {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 500;
+      margin-bottom: 0.2rem;
+    }
+
+    .tl-org {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    .tl-points {
+      list-style: none;
+      padding: 0;
+    }
+
+    .tl-points li {
+      font-size: 0.9rem;
+      color: var(--muted);
+      padding: 0.3rem 0;
+      padding-left: 1.2rem;
+      position: relative;
+      line-height: 1.6;
+    }
+
+    .tl-points li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--key);
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.8rem;
+    }
+
+    /* RESEARCH */
+    .papers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1rem;
+    }
+
+    .paper-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1.6rem;
+      transition: border-color 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .paper-card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px;
+      height: 100%;
+      background: var(--key);
+    }
+
+    .paper-card:hover {
+      border-color: rgba(33,150,243,0.3);
+    }
+
+    .paper-id {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--key);
+      letter-spacing: 0.08em;
       margin-bottom: 0.8rem;
     }
 
-    ul {
-      padding-left: 1.2rem;
-      margin-top: 0.8rem;
+    .paper-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1rem;
+      font-weight: 500;
+      line-height: 1.4;
+      margin-bottom: 0.6rem;
     }
 
+    .paper-link {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+    }
+
+    .paper-link:hover { color: var(--accent); }
+
+    .patents-block {
+      margin-top: 2rem;
+      background: var(--accent-dim);
+      border: 1px solid rgba(0,229,160,0.15);
+      border-radius: 6px;
+      padding: 1.6rem;
+    }
+
+    .patents-block h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+
+    .patents-block p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* TALKS */
+    .talks-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+
+    .talk-row {
+      background: var(--bg);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 2rem;
+      padding: 1.4rem 1.6rem;
+      transition: background 0.2s;
+    }
+
+    .talk-row:hover { background: var(--faint); }
+
+    .talk-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 500;
+      margin-bottom: 0.25rem;
+    }
+
+    .talk-desc {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .talk-year {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    /* EDUCATION */
+    .edu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 1rem;
+    }
+
+    .edu-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1.6rem;
+    }
+
+    .edu-degree {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 500;
+      margin-bottom: 0.3rem;
+    }
+
+    .edu-field {
+      font-size: 0.88rem;
+      color: var(--key);
+      margin-bottom: 0.4rem;
+    }
+
+    .edu-meta {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+    }
+
+    /* CONTACT */
+    .contact-inner {
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 3rem;
+      text-align: center;
+    }
+
+    .contact-inner p {
+      font-size: 1rem;
+      color: var(--muted);
+      margin-bottom: 2rem;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    /* DIVIDER */
+    .divider {
+      max-width: 1200px;
+      margin: 0 auto;
+      border: none;
+      border-top: 1px solid var(--border);
+    }
+
+    /* FOOTER */
     footer {
       text-align: center;
-      padding: 2rem;
+      padding: 2rem 4rem;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.72rem;
       color: var(--muted);
+      letter-spacing: 0.06em;
+      border-top: 1px solid var(--border);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 720px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      .hero, .section { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .hero { padding-top: 7rem; padding-bottom: 3rem; }
+      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .talk-row { grid-template-columns: 1fr; }
+      .talk-year { display: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .cipher-inner { animation: none; }
     }
   </style>
 </head>
 <body>
 
-  <header>
+  <nav>
+    <span class="nav-mono">AKP · cryptographer</span>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <!-- HERO -->
     <div class="hero">
-      <h1>Anil Kumar Pradhan</h1>
-      <p>
-        Head of Cryptography Research specializing in Fully Homomorphic Encryption,
-        post-quantum cryptography, secure computation, and production-ready
-        cryptographic systems.
+      <div class="hero-eyebrow">Head of Cryptography Research · Dublin, Ireland</div>
+      <h1 class="hero-name">Anil Kumar<br /><em>Pradhan</em></h1>
+      <p class="hero-desc">
+        Designing cryptographic systems at the frontier of Fully Homomorphic Encryption,
+        post-quantum protocols, and secure multi-party computation —
+        from mathematical foundations to production-grade implementation.
       </p>
-      <div class="buttons">
-        <a class="button" href="#research">Research</a>
-        <a class="button secondary" href="https://www.linkedin.com/in/anil-kumar-pradhan-98416920/" target="_blank">LinkedIn</a>
-        <a class="button secondary" href="https://scholar.google.com/citations?user=tGdpL-gAAAAJ&hl=en&oi=sra" target="_blank">Google Scholar</a>
+      <div class="hero-actions">
+        <a class="btn-primary" href="#research">View Research</a>
+        <a class="btn-ghost" href="https://scholar.google.com/citations?user=tGdpL-gAAAAJ" target="_blank">Google Scholar</a>
+        <a class="btn-ghost" href="https://www.linkedin.com/in/anil-kumar-pradhan-98416920/" target="_blank">LinkedIn</a>
+      </div>
+
+      <!-- THE CIPHER STRIP -->
+      <div class="cipher-strip">
+        <div class="cipher-inner">
+          <span class="hi">Enc(m₁) ⊕ Enc(m₂) = Enc(m₁ + m₂)</span>
+          <span>RLWE · CRT · BGV · CKKS · BFV</span>
+          <span class="hi">∀m ∈ ℤₚ : Dec(Enc(m)) = m</span>
+          <span>post-quantum · lattice-based</span>
+          <span class="hi">f(Enc(x)) = Enc(f(x))</span>
+          <span>zero-knowledge · multi-party</span>
+          <span class="hi">χ ← D_σ : ‖χ‖ ≪ q</span>
+          <span>CRT-FHE · Multi-Key FHE</span>
+          <span class="hi">Enc(m₁) ⊕ Enc(m₂) = Enc(m₁ + m₂)</span>
+          <span>RLWE · CRT · BGV · CKKS · BFV</span>
+          <span class="hi">∀m ∈ ℤₚ : Dec(Enc(m)) = m</span>
+          <span>post-quantum · lattice-based</span>
+          <span class="hi">f(Enc(x)) = Enc(f(x))</span>
+          <span>zero-knowledge · multi-party</span>
+          <span class="hi">χ ← D_σ : ‖χ‖ ≪ q</span>
+          <span>CRT-FHE · Multi-Key FHE</span>
+        </div>
       </div>
     </div>
-  </header>
 
-  <section id="about">
-    <h2>About</h2>
-    <p>
-      I am a cryptography researcher with over a decade of experience
-      bridging theoretical mathematics and production-grade cryptographic solutions.
-      My work focuses on Fully Homomorphic Encryption, encrypted data sharing,
-      secure multi-party computation, zero-knowledge proofs, post-quantum protocols,
-      and enterprise data security.
-    </p>
-  </section>
-
-  <section id="skills">
-    <h2>Core Expertise</h2>
-    <div class="grid">
-      <div class="card">
-        <h3>Applied Cryptography</h3>
-        <p>FHE, MPC, ZKP, PQC, blockchain, key exchange, identity, and access control.</p>
+    <!-- ABOUT -->
+    <section id="about" class="section">
+      <div class="section-label">Background</div>
+      <h2 class="section-title">About</h2>
+      <div class="about-grid">
+        <div>
+          <p class="about-body">
+            I am a cryptography researcher with over a decade of experience bridging
+            theoretical mathematics and production-grade cryptographic solutions.
+            My primary focus is Fully Homomorphic Encryption — specifically novel
+            CRT-based and Multi-Key FHE schemes — alongside encrypted data sharing,
+            secure multi-party computation, zero-knowledge proofs, and
+            post-quantum protocol design.
+          </p>
+          <br />
+          <p class="about-body">
+            Currently leading cryptography research at Vaultree in Dublin,
+            where I direct the engineering of a proprietary FHE library in Rust and Python,
+            and represent the company at major cybersecurity and privacy conferences worldwide.
+          </p>
+        </div>
+        <div class="about-stats">
+          <div class="stat">
+            <div class="stat-num">10+</div>
+            <div class="stat-label">Years in cryptography R&amp;D</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">3</div>
+            <div class="stat-label">IACR ePrint publications</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">5+</div>
+            <div class="stat-label">Patents granted</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">IIT</div>
+            <div class="stat-label">Delhi · M.S. Mathematics</div>
+          </div>
+        </div>
       </div>
-      <div class="card">
-        <h3>Engineering</h3>
-        <p>C/C++, Rust, Go, Python, and cryptographic library implementation.</p>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- EXPERTISE -->
+    <section id="skills" class="section">
+      <div class="section-label">Competencies</div>
+      <h2 class="section-title">Core Expertise</h2>
+      <div class="expertise-grid">
+        <div class="expertise-item" data-index="01">
+          <div class="expertise-icon">
+            <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </div>
+          <h3>Fully Homomorphic Encryption</h3>
+          <p>Novel CRT-based and Multi-Key FHE schemes. BGV, CKKS, BFV, TFHE. Production Rust/Python library implementation.</p>
+        </div>
+        <div class="expertise-item" data-index="02">
+          <div class="expertise-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3v9l5 3"/></svg>
+          </div>
+          <h3>Post-Quantum Cryptography</h3>
+          <p>Lattice-based schemes, RLWE hardness assumptions, quantum-safe identity, key agreement, and NIST PQC standards.</p>
+        </div>
+        <div class="expertise-item" data-index="03">
+          <div class="expertise-icon">
+            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <h3>Secure Multi-Party Computation</h3>
+          <p>MPC protocols for private multiparty insights. Encrypted data sharing across organisational boundaries.</p>
+        </div>
+        <div class="expertise-item" data-index="04">
+          <div class="expertise-icon">
+            <svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+          </div>
+          <h3>Zero-Knowledge Proofs</h3>
+          <p>ZKP system design for authentication, access control, and privacy-preserving verification in enterprise settings.</p>
+        </div>
+        <div class="expertise-item" data-index="05">
+          <div class="expertise-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </div>
+          <h3>Engineering</h3>
+          <p>Cryptographic library development in C/C++, Rust, Go, and Python. Rapid prototyping, API design, and performance optimisation.</p>
+        </div>
+        <div class="expertise-item" data-index="06">
+          <div class="expertise-icon">
+            <svg viewBox="0 0 24 24"><path d="M3 3h18v18H3z"/><path d="M3 9h18M9 3v18"/></svg>
+          </div>
+          <h3>Research &amp; Patents</h3>
+          <p>R&amp;D leadership across defence, government, and finance. Academic publishing on IACR ePrint. Patent strategy and filing.</p>
+        </div>
       </div>
-      <div class="card">
-        <h3>Leadership</h3>
-        <p>R&D strategy, team leadership, academic collaboration, and patent strategy.</p>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- EXPERIENCE -->
+    <section id="experience" class="section">
+      <div class="section-label">Career</div>
+      <h2 class="section-title">Experience</h2>
+      <div class="timeline">
+
+        <div class="timeline-item">
+          <div class="tl-meta">Jan 2023 – Present · Dublin, Ireland</div>
+          <div class="tl-role">Head of Cryptography Research</div>
+          <div class="tl-org">Vaultree</div>
+          <ul class="tl-points">
+            <li>Invented and published novel CRT-based and Multi-Key Fully Homomorphic Encryption schemes on IACR ePrint.</li>
+            <li>Lead engineering development of a proprietary FHE library in Rust and Python, from theory to production.</li>
+            <li>Represent Vaultree at major cybersecurity and privacy conferences, including PET North America and Cyber Ireland.</li>
+          </ul>
+        </div>
+
+        <div class="timeline-item">
+          <div class="tl-meta">Oct 2016 – Dec 2022 · Pune, India</div>
+          <div class="tl-role">Sr. R&amp;D Consultant &amp; Lead Cryptographer</div>
+          <div class="tl-org">Fortytwo42 Labs</div>
+          <ul class="tl-points">
+            <li>Directed cryptographic R&amp;D programs across defence, government, and financial sector clients.</li>
+            <li>Delivered patented innovations in quantum-safe identity, ZKP, MPC, access control, and blockchain protocols.</li>
+          </ul>
+        </div>
+
+        <div class="timeline-item">
+          <div class="tl-meta">Aug 2014 – Oct 2016 · Pune, India</div>
+          <div class="tl-role">Sr. Research Engineer, Cryptography</div>
+          <div class="tl-org">Uniken</div>
+          <ul class="tl-points">
+            <li>Applied mathematical analysis to cryptographic algorithm development for security platforms.</li>
+            <li>Supported rapid prototyping and incubation of new cryptographic product lines.</li>
+          </ul>
+        </div>
+
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="experience">
-    <h2>Experience</h2>
+    <hr class="divider" />
 
-    <div class="card">
-      <h3>Head of Cryptography Research — Vaultree</h3>
-      <div class="meta">Jan 2023 – Present · Dublin, Ireland</div>
-      <ul>
-        <li>Invented and published novel CRT-based and Multi-Key Fully Homomorphic Encryption schemes.</li>
-        <li>Lead engineering development of a proprietary FHE library using Rust and Python.</li>
-        <li>Represent Vaultree at major cybersecurity and privacy conferences.</li>
-      </ul>
-    </div>
+    <!-- RESEARCH -->
+    <section id="research" class="section">
+      <div class="section-label">Publications &amp; IP</div>
+      <h2 class="section-title">Research</h2>
+      <div class="papers-grid">
 
-    <br />
+        <div class="paper-card">
+          <div class="paper-id">IACR ePrint · 2024/1105</div>
+          <div class="paper-title">A New CRT-based Fully Homomorphic Encryption Scheme</div>
+          <a class="paper-link" href="https://eprint.iacr.org/2024/1105" target="_blank">eprint.iacr.org/2024/1105 ↗</a>
+        </div>
 
-    <div class="card">
-      <h3>Sr. R&D Consultant & Lead Cryptographer — Fortytwo42 Labs</h3>
-      <div class="meta">Oct 2016 – Dec 2022 · Pune, India</div>
-      <ul>
-        <li>Directed cryptographic R&D across defense, government, and financial sectors.</li>
-        <li>Contributed patented innovations in quantum-safe identity, ZKP, MPC, access control, and blockchain.</li>
-      </ul>
-    </div>
+        <div class="paper-card">
+          <div class="paper-id">IACR ePrint · 2024/1622</div>
+          <div class="paper-title">Encrypted Data Sharing and Computation</div>
+          <a class="paper-link" href="https://eprint.iacr.org/2024/1622" target="_blank">eprint.iacr.org/2024/1622 ↗</a>
+        </div>
 
-    <br />
+        <div class="paper-card">
+          <div class="paper-id">IACR ePrint · 2026/1141</div>
+          <div class="paper-title">DASTE</div>
+          <a class="paper-link" href="https://eprint.iacr.org/2026/1141" target="_blank">eprint.iacr.org/2026/1141 ↗</a>
+        </div>
 
-    <div class="card">
-      <h3>Sr. Research Engineer, Cryptography — Uniken</h3>
-      <div class="meta">Aug 2014 – Oct 2016 · Pune, India</div>
-      <ul>
-        <li>Applied mathematical analysis to cryptographic algorithm development.</li>
-        <li>Supported rapid prototyping and product incubation for security platforms.</li>
-      </ul>
-    </div>
-  </section>
-
-  <section id="research">
-    <h2>Recent Papers & Patents</h2>
-    <div class="grid">
-      <div class="card">
-        <h3>A New CRT-based Fully Homomorphic Encryption</h3>
-        <p><a href="https://eprint.iacr.org/2024/1105" target="_blank">IACR ePrint 2024/1105</a></p>
       </div>
-      <div class="card">
-        <h3>Encrypted Data Sharing and Computation</h3>
-        <p><a href="https://eprint.iacr.org/2024/1622" target="_blank">IACR ePrint 2024/1622</a></p>
-      </div>
-      <div class="card">
-        <h3>DASTE</h3>
-        <p><a href="https://eprint.iacr.org/2026/1141" target="_blank">IACR ePrint 2026/1141</a></p>
-      </div>
-      <div class="card">
+
+      <div class="patents-block">
         <h3>Selected Patents</h3>
         <p>
-          Quantum-safe identity-based key agreement, collective trust identity,
-          dynamic digital identity, encrypted data comparison, and access-control systems.
+          Quantum-safe identity-based key agreement · Collective trust identity ·
+          Dynamic digital identity · Encrypted data comparison ·
+          Access-control systems for enterprise environments.
         </p>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="talks">
-    <h2>Conference Talks</h2>
-    <div class="card">
-      <h3>Privacy-Enhancing Technology North America Summit 2024</h3>
-      <p>Co-opetition: Private and Secure Multiparty Insights with Vaultree Encrypted Data Sharing.</p>
-    </div>
-    <br />
-    <div class="card">
-      <h3>Cyber Ireland National Conference 2024</h3>
-      <p>Emerging Technologies Session.</p>
-    </div>
-  </section>
+    <hr class="divider" />
 
-  <section id="education">
-    <h2>Education</h2>
-    <div class="card">
-      <h3>M.S. Mathematics — Indian Institute of Technology Delhi</h3>
-      <p>2012 – 2014 · Delhi, India</p>
-    </div>
-    <br />
-    <div class="card">
-      <h3>B.Sc. Honors, Mathematics and Computing — Institute of Mathematics and Applications</h3>
-      <p>2009 – 2012 · Bhubaneswar, India</p>
-    </div>
-  </section>
+    <!-- TALKS -->
+    <section id="talks" class="section">
+      <div class="section-label">Speaking</div>
+      <h2 class="section-title">Conference Talks</h2>
+      <div class="talks-list">
+        <div class="talk-row">
+          <div>
+            <div class="talk-title">Privacy-Enhancing Technology North America Summit</div>
+            <div class="talk-desc">Co-opetition: Private and Secure Multiparty Insights with Vaultree Encrypted Data Sharing</div>
+          </div>
+          <div class="talk-year">2024</div>
+        </div>
+        <div class="talk-row">
+          <div>
+            <div class="talk-title">Cyber Ireland National Conference</div>
+            <div class="talk-desc">Emerging Technologies Session</div>
+          </div>
+          <div class="talk-year">2024</div>
+        </div>
+      </div>
+    </section>
 
-  <section id="contact">
-    <h2>Contact</h2>
-    <p>
-      Connect with me on
-      <a href="https://www.linkedin.com/in/anil-kumar-pradhan-98416920/" target="_blank">LinkedIn</a>
-      or view my publications on
-      <a href="https://scholar.google.com/citations?user=tGdpL-gAAAAJ&hl=en&oi=sra" target="_blank">Google Scholar</a>.
-    </p>
-  </section>
+    <hr class="divider" />
+
+    <!-- EDUCATION -->
+    <section id="education" class="section">
+      <div class="section-label">Academic Background</div>
+      <h2 class="section-title">Education</h2>
+      <div class="edu-grid">
+        <div class="edu-card">
+          <div class="edu-degree">Master of Science</div>
+          <div class="edu-field">Mathematics</div>
+          <div class="edu-meta">Indian Institute of Technology Delhi · 2012–2014</div>
+        </div>
+        <div class="edu-card">
+          <div class="edu-degree">B.Sc. Honours</div>
+          <div class="edu-field">Mathematics and Computing</div>
+          <div class="edu-meta">Institute of Mathematics and Applications, Bhubaneswar · 2009–2012</div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- CONTACT -->
+    <section id="contact" class="section">
+      <div class="section-label">Get in Touch</div>
+      <h2 class="section-title">Contact</h2>
+      <div class="contact-inner">
+        <p>
+          Open to research collaborations, conference invitations, and conversations
+          about the future of privacy-preserving computation.
+        </p>
+        <div class="contact-links">
+          <a class="btn-primary" href="https://www.linkedin.com/in/anil-kumar-pradhan-98416920/" target="_blank">LinkedIn</a>
+          <a class="btn-ghost" href="https://scholar.google.com/citations?user=tGdpL-gAAAAJ" target="_blank">Google Scholar</a>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <footer>
-    © 2026 Anil Kumar Pradhan. All rights reserved.
+    © 2026 Anil Kumar Pradhan · Head of Cryptography Research · Dublin, Ireland
   </footer>
 
 </body>
