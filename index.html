@@ -1,10 +1,267 @@
+```html
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>My Website</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anil Kumar Pradhan | Cryptography Researcher</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: #111827;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --accent: #38bdf8;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Inter, system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    header, section {
+      max-width: 1000px;
+      margin: auto;
+      padding: 4rem 2rem;
+    }
+
+    header {
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+    }
+
+    h1 {
+      font-size: clamp(2.6rem, 7vw, 5rem);
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: var(--accent);
+    }
+
+    h3 { margin-bottom: 0.4rem; }
+
+    p, li { color: var(--muted); }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 760px;
+      margin-bottom: 1.5rem;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .button {
+      padding: 0.8rem 1.2rem;
+      border-radius: 999px;
+      background: var(--accent);
+      color: var(--bg);
+      font-weight: 700;
+    }
+
+    .button.secondary {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--muted);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 1rem;
+      padding: 1.4rem;
+    }
+
+    .meta {
+      color: var(--accent);
+      font-size: 0.95rem;
+      margin-bottom: 0.8rem;
+    }
+
+    ul {
+      padding-left: 1.2rem;
+      margin-top: 0.8rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: var(--muted);
+    }
+  </style>
 </head>
 <body>
-    <h1>Welcome to github.io!</h1>
-    <p>This is my new website hosted on GitHub Pages.</p>
+
+  <header>
+    <div class="hero">
+      <h1>Anil Kumar Pradhan</h1>
+      <p>
+        Head of Cryptography Research specializing in Fully Homomorphic Encryption,
+        post-quantum cryptography, secure computation, and production-ready
+        cryptographic systems.
+      </p>
+      <div class="buttons">
+        <a class="button" href="#research">Research</a>
+        <a class="button secondary" href="https://www.linkedin.com/in/anil-kumar-pradhan-98416920/" target="_blank">LinkedIn</a>
+        <a class="button secondary" href="https://scholar.google.com/citations?user=tGdpL-gAAAAJ&hl=en&oi=sra" target="_blank">Google Scholar</a>
+      </div>
+    </div>
+  </header>
+
+  <section id="about">
+    <h2>About</h2>
+    <p>
+      I am a cryptography researcher with over a decade of experience
+      bridging theoretical mathematics and production-grade cryptographic solutions.
+      My work focuses on Fully Homomorphic Encryption, encrypted data sharing,
+      secure multi-party computation, zero-knowledge proofs, post-quantum protocols,
+      and enterprise data security.
+    </p>
+  </section>
+
+  <section id="skills">
+    <h2>Core Expertise</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Applied Cryptography</h3>
+        <p>FHE, MPC, ZKP, PQC, blockchain, key exchange, identity, and access control.</p>
+      </div>
+      <div class="card">
+        <h3>Engineering</h3>
+        <p>C/C++, Rust, Go, Python, and cryptographic library implementation.</p>
+      </div>
+      <div class="card">
+        <h3>Leadership</h3>
+        <p>R&D strategy, team leadership, academic collaboration, and patent strategy.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <h2>Experience</h2>
+
+    <div class="card">
+      <h3>Head of Cryptography Research — Vaultree</h3>
+      <div class="meta">Jan 2023 – Present · Dublin, Ireland</div>
+      <ul>
+        <li>Invented and published novel CRT-based and Multi-Key Fully Homomorphic Encryption schemes.</li>
+        <li>Lead engineering development of a proprietary FHE library using Rust and Python.</li>
+        <li>Represent Vaultree at major cybersecurity and privacy conferences.</li>
+      </ul>
+    </div>
+
+    <br />
+
+    <div class="card">
+      <h3>Sr. R&D Consultant & Lead Cryptographer — Fortytwo42 Labs</h3>
+      <div class="meta">Oct 2016 – Dec 2022 · Pune, India</div>
+      <ul>
+        <li>Directed cryptographic R&D across defense, government, and financial sectors.</li>
+        <li>Contributed patented innovations in quantum-safe identity, ZKP, MPC, access control, and blockchain.</li>
+      </ul>
+    </div>
+
+    <br />
+
+    <div class="card">
+      <h3>Sr. Research Engineer, Cryptography — Uniken</h3>
+      <div class="meta">Aug 2014 – Oct 2016 · Pune, India</div>
+      <ul>
+        <li>Applied mathematical analysis to cryptographic algorithm development.</li>
+        <li>Supported rapid prototyping and product incubation for security platforms.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="research">
+    <h2>Recent Papers & Patents</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>A New CRT-based Fully Homomorphic Encryption</h3>
+        <p><a href="https://eprint.iacr.org/2024/1105" target="_blank">IACR ePrint 2024/1105</a></p>
+      </div>
+      <div class="card">
+        <h3>Encrypted Data Sharing and Computation</h3>
+        <p><a href="https://eprint.iacr.org/2024/1622" target="_blank">IACR ePrint 2024/1622</a></p>
+      </div>
+      <div class="card">
+        <h3>DASTE</h3>
+        <p><a href="https://eprint.iacr.org/2026/1141" target="_blank">IACR ePrint 2026/1141</a></p>
+      </div>
+      <div class="card">
+        <h3>Selected Patents</h3>
+        <p>
+          Quantum-safe identity-based key agreement, collective trust identity,
+          dynamic digital identity, encrypted data comparison, and access-control systems.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="talks">
+    <h2>Conference Talks</h2>
+    <div class="card">
+      <h3>Privacy-Enhancing Technology North America Summit 2024</h3>
+      <p>Co-opetition: Private and Secure Multiparty Insights with Vaultree Encrypted Data Sharing.</p>
+    </div>
+    <br />
+    <div class="card">
+      <h3>Cyber Ireland National Conference 2024</h3>
+      <p>Emerging Technologies Session.</p>
+    </div>
+  </section>
+
+  <section id="education">
+    <h2>Education</h2>
+    <div class="card">
+      <h3>M.S. Mathematics — Indian Institute of Technology Delhi</h3>
+      <p>2012 – 2014 · Delhi, India</p>
+    </div>
+    <br />
+    <div class="card">
+      <h3>B.Sc. Honors, Mathematics and Computing — Institute of Mathematics and Applications</h3>
+      <p>2009 – 2012 · Bhubaneswar, India</p>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>
+      Connect with me on
+      <a href="https://www.linkedin.com/in/anil-kumar-pradhan-98416920/" target="_blank">LinkedIn</a>
+      or view my publications on
+      <a href="https://scholar.google.com/citations?user=tGdpL-gAAAAJ&hl=en&oi=sra" target="_blank">Google Scholar</a>.
+    </p>
+  </section>
+
+  <footer>
+    © 2026 Anil Kumar Pradhan. All rights reserved.
+  </footer>
+
 </body>
 </html>
+```
